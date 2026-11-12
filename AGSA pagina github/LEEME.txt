@@ -1,0 +1,3 @@
+Página de AGSA Control para GitHub Pages.
+Sube TODOS estos archivos a la raíz del repositorio (index.html, manifest.webmanifest, sw.js y los .png).
+No hay que volver a tocarlos: las mejoras se siguen haciendo con clasp push / clasp deploy.
