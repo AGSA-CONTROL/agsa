@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>AGSA Control</title>
+<meta name="theme-color" content="#0b0b0e">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="AGSA">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="icono-192.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<style>
+  html,body{margin:0;height:100%;background:#0b0b0e;overflow:hidden}
+  iframe{position:fixed;inset:0;width:100%;height:100%;border:0;display:block}
+  #cargando{position:fixed;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;
+    color:#a1a1aa;font:14px system-ui,-apple-system,Segoe UI,Roboto,sans-serif}
+  #cargando img{width:84px;height:84px;border-radius:18px}
+</style>
+</head>
+<body>
+<div id="cargando"><img src="icono-192.png" alt=""><div>Cargando AGSA…</div></div>
+<!-- La app vive en la nube de Google (Apps Script). Esta página solo la muestra a pantalla completa:
+     los datos, las contraseñas y los equipos autorizados se revisan en la nube, no aquí. -->
+<iframe id="app" title="AGSA Control" allow="clipboard-read; clipboard-write; fullscreen"></iframe>
+<script>
+  var NUBE = "https://script.google.com/macros/s/AKfycbwL98eeaJ86SylOxAmy3FIcT331XBZ1Bd2VUkNyDVN1L5L59pbhtoH73Z1hsz6OnQYr/exec";
+  var aqui = location.origin + location.pathname;
+  var f = document.getElementById('app');
+  f.onload = function(){ var c = document.getElementById('cargando'); if(c) c.remove(); };
+  f.src = NUBE + '?app=' + encodeURIComponent(aqui);
+  if('serviceWorker' in navigator){ navigator.serviceWorker.register('sw.js').catch(function(){}); }
+</script>
+</body>
+</html>
